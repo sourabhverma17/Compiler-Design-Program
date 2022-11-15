@@ -1,0 +1,28 @@
+%{
+int tkn=0;
+}%
+%%
+//Count num of Keywords
+"int"|"float"|"double" {tkn++;printf("\tKeywords :%s",yytext);}
+
+//Keywords
+"while"|"if"|"else" {tkn++;printf(\tKeywords :%s",yytext);}
+//Count the identifiers
+[a-zA-Z_][a-zA-Z0-9_]* {tkn++;printf("\tIdentifiers :%s",yytext);}
+//count the Separators
+[(){}|,;] {tkn++; printf("\tSeparators :%s",yytext);}
+//count the operators
+"="|"=="|"<="|"++"|"+"|"*"|"/" {tkn++; printf("\tOperators :%s",yytext);
+//count integers
+[0-9]+ {tkn++; printf("\tInteger :%s",yytext);}
+//count float
+[0-9]*"."[0-9]+ {tkn++;printf("\t Float :%s",yytext);}
+%%
+int yywrap()
+{}
+int main()
+{
+yylex();
+printf("Statement has %d number of tokens\n",tkn);
+return 0;
+}
